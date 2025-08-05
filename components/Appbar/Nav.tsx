@@ -20,7 +20,7 @@ export default function Nav() {
       { id: 'agreement', label: 'รับทราบกติกาการแข่งขัน', done: isAgree, link: 'step1' },
       { id: 'school', label: 'กรอกข้อมูลโรงเรียน', done: isSchoolDone, link: 'step2' },
       { id: 'student', label: 'กรอกข้อมูลผู้สมัคร', done: isStudentDone, link: 'step3' },
-      { id: 'payment', label: 'ชำระค่าสมัคร', done: isPaymentDone, link: 'step4' },
+      { id: 'payment', label: 'ยืนยันการสมัคร', done: isPaymentDone, link: 'step4' },
       // { id: 'scorereport', label: 'พิมพ์เกียรติบัตร', done: isPaymentDone, link: 'step5' },
       // { id: 'medtalk', label: 'เพิ่มผู้เข้าร่วมงาน MedTalk', done: false, link: 'medtalk' },
     ];

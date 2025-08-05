@@ -162,7 +162,7 @@ export default function StudentForm({
           size="md"
           {...isJoinMedtalk}
           // disabled={isMedTalkFull}
-          // style={{ visibility: 'hidden' }}
+          style={{ visibility: 'hidden' }}
         />
         {isJoinMedtalk.checked && (
           <>

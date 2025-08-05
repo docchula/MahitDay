@@ -200,7 +200,7 @@ export default function Verification() {
             <p>Email: {team.email}</p>
             <p>Team Code: {team.team_code}</p>
             <p>Team Reference: {team.team_reference}</p>
-            <p>Total Payment: {team.total_payment}</p>
+            {/* <p>Total Payment: {team.total_payment}</p> */}
 
             <h2>Students</h2>
             <Table>
@@ -288,13 +288,13 @@ export default function Verification() {
               </tbody>
             </Table>
 
-            <h2>Payment Slip</h2>
+            {/* <h2>Payment Slip</h2>
             <h3>Total Payment: {team.total_payment}</h3>
             <img
               src={`data:image/jpeg;base64,${data.base64Slip}`}
               alt="Payment Slip"
               style={{ width: '500px' }}
-            />
+            /> */}
 
             <div style={{ margin: '20px 0', display: 'flex', justifyContent: 'center' }}>
               <Button type="button" color="green" onClick={handleAccept}>

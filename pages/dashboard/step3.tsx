@@ -115,10 +115,6 @@ export default function index() {
               </Collapse>
             </>
           )}
-          <Space h="md" />
-          <Text size="sm" color="dimmed" align="center">
-            กรุณาส่งหลักฐานการโอนภายใน 30 นาทีหลังสร้างทีม
-          </Text>
         </Container>
       </Layout>
     </>

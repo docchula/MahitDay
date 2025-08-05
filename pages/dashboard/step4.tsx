@@ -40,6 +40,42 @@ export default function index() {
   const [teamRef, setTeamRef] = useState('');
   const [opened, { open, close }] = useDisclosure(false);
   const [visible, setVisible] = useState(false);
+
+  const handleStatusChange = async (teamRef: string) => {
+     const confirmed = window.confirm('ต้องการยืนยันการสมัครหรือไม่ คุณจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว');
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch('/api/change-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ team_reference: teamRef }),
+    });
+    const data = await response.json();
+    if (data.status === 'ok') {
+      // Refresh the page or update the data to show the new status
+      toast.success('อัปเดตสถานะสำเร็จ กรุณารีเฟรชหน้าจอ', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+      // You might want to revalidate the SWR data here
+    } else {
+      toast.error('เกิดข้อผิดพลาด', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ', {
+      position: 'bottom-right',
+      theme: 'colored',
+    });
+  }
+};
+
   const notify = () =>
     toast.success('ส่งหลักฐานสำเร็จ กรุณาตรวจผลการตรวจสอบในภายหลัง', {
       position: 'bottom-right',
@@ -61,10 +97,8 @@ export default function index() {
                   return (
                     <>
                       {isAvailable ? (
-                        <Button
-                          onClick={() => handleClick(user.total_payment, user.team_reference)}
-                        >
-                          อัปโหลดหลักฐานการโอนเงิน
+                        <Button onClick={() => handleStatusChange(user.team_reference)}>
+                          ยืนยันการสมัคร
                         </Button>
                       ) : (
                         <Badge color="orange" size="xl" variant="filled">
@@ -155,10 +189,6 @@ export default function index() {
           >
             <PaymentForm teamPrice={teamPrice} teamRef={teamRef} close={close} notify={notify} />
           </Modal>
-          <Space h="md" />
-          <Text size="sm" color="dimmed" align="center">
-            กรุณาส่งหลักฐานการโอนภายใน 30 นาทีหลังสร้างทีม
-          </Text>
         </Container>
       </Layout>
       <ToastContainer position="bottom-right" theme="colored" />

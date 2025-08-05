@@ -73,7 +73,7 @@ export async function GET() {
     const imageRef_2 = ref(storage, `images/${imageName_2}`);
     const idRef_2 = ref(storage, `cards/${imageName_2}`);
 
-    const paid = ref(storage, `slip/${team_reference}`);
+    // const paid = ref(storage, `slip/${team_reference}`);
 
     //.png is to deleted afterward it's because accidently deleted firebase file
 
@@ -95,7 +95,7 @@ export async function GET() {
     let base64Id_1 = '';
     let base64Id_2 = '';
 
-    let base64Slip = '';
+    // let base64Slip = '';
 
     try {
       try {
@@ -125,11 +125,11 @@ export async function GET() {
         base64Id_1 = Buffer.from(idArrayBuffer_1).toString('base64');
         base64Id_2 = Buffer.from(idArrayBuffer_2).toString('base64');
 
-        const slipUrl = await getDownloadURL(paid);
-        const slipRes = await fetch(slipUrl);
-        const slipArrayBuffer = await slipRes.arrayBuffer();
+        // const slipUrl = await getDownloadURL(paid);
+        // const slipRes = await fetch(slipUrl);
+        // const slipArrayBuffer = await slipRes.arrayBuffer();
 
-        base64Slip = Buffer.from(slipArrayBuffer).toString('base64');
+        // base64Slip = Buffer.from(slipArrayBuffer).toString('base64');
       } catch (error) {
         return NextResponse.json({ error: 'Error during processing image data' });
       }
@@ -158,7 +158,7 @@ export async function GET() {
       imageCard_1: base64Id_1,
       image_2: base64Image_2,
       imageCard_2: base64Id_2,
-      base64Slip,
+      // base64Slip,
       verifiedCounts: {
         gross: grossCount,
         histology: histologyCount,

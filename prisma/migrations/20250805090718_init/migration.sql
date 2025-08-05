@@ -31,6 +31,8 @@ CREATE TABLE `students` (
     `phone_number` VARCHAR(191) NULL,
     `grade` INTEGER NULL,
     `is_join_medtalk` BOOLEAN NULL,
+    `medtour_group` VARCHAR(191) NULL,
+    `medtour_flex` VARCHAR(191) NULL,
     `preferred_hand` VARCHAR(191) NULL,
     `student_reference` VARCHAR(191) NOT NULL,
     `student_score` INTEGER NULL,
@@ -43,8 +45,6 @@ CREATE TABLE `students` (
 -- CreateTable
 CREATE TABLE `users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `lastname` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `school` VARCHAR(191) NOT NULL,
     `school_location` VARCHAR(191) NOT NULL,
