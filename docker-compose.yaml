@@ -1,0 +1,28 @@
+services:
+  nextjs:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: amsci-app
+    pull_policy: build
+    restart: always
+    env_file:
+      - stack.env
+    labels:
+      # Traefik configuration discovery
+      # https://doc.traefik.io/traefik/providers/docker/#routing-configuration-with-labels
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.amsci-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.amsci-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.amsci-http.middlewares=amsci-redirect"
+      - "traefik.http.routers.amsci-http.rule=Host(`amsci.docchula.com`)"
+      - "traefik.http.routers.amsci-http.entrypoints=web"
+      - "traefik.http.routers.amsci-https.rule=Host(`amsci.docchula.com`)"
+      - "traefik.http.routers.amsci-https.entrypoints=websecure"
+      - "traefik.http.routers.amsci-https.tls.certresolver=leresolver"
+      - "traefik.http.services.amsci-https.loadbalancer.server.port=3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G

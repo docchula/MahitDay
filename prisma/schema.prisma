@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model teams {
+  id Int @id @default(autoincrement()) // id of team
+
+  user  users  @relation(fields: [email], references: [email]) // user id
+  email String // email logged in 
+
+  // general info
+  name      String // name of team
+  team_code Int // use to follow team name e.g. team #2023 (like discord) -- use only in case of duplicate team name so students are not confused
+
+  teacher_prefix    String // teacher prefix
+  teacher_firstname String // teacher firstname
+  teacher_lastname  String // teacher lastname
+  teacher_phone     String // teacher phone number
+
+  // data used for other purposes
+  all_join_medtalk  Int // all join MedTalk
+  student           students[] // students in the team (2 for 2023)
+  total_payment     Int
+  enrollment_status Int
+  team_reference    String     @unique // use to reference to team in general (for devs) : not easily guessed or auto-incremented like team-id
+  created_at        DateTime   @default(now())
+}
+
+model students {
+  id Int @id @default(autoincrement())
+
+  // relation to team
+  team           teams  @relation(fields: [team_reference], references: [team_reference]) // not exist in the database
+  team_reference String // exist in the database
+
+  // ids
+  student_id  String?
+  national_id String?
+
+  // general information
+  prefix          String?
+  firstname       String?
+  lastname        String?
+  email           String?
+  phone_number    String?
+  grade           Int?
+  is_join_medtalk Boolean?
+  medtour_group   String?
+  medtour_flex    String?
+  preferred_hand  String?
+
+  student_reference String @unique
+
+  student_score Int?
+  created_at    DateTime @default(now())
+}
+
+model users {
+  id                  Int      @id @default(autoincrement())
+  email               String   @unique
+  school              String // school name
+  school_location     String // school location
+  school_phone_number String // school phone number
+  province            String?
+  agree_to_terms      Boolean
+  // medtalk             Medtalk[]
+  team                teams[]
+  downloaded          Int?     @default(0) // Number of downloads
+  created_at          DateTime @default(now())
+}
+
+// model Medtalk {
+//   id                Int      @id @default(autoincrement())
+//   user              User     @relation(fields: [email], references: [email]) // user id
+//   name              String
+//   lastname          String
+//   email             String
+//   medtalk_reference String   @unique
+//   status            Int
+//   phone_number      String
+//   created_at        DateTime @default(now())
+// }

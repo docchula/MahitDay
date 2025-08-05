@@ -1,0 +1,27 @@
+export type FormValues = {
+  teamName: string;
+  prefixTeacher: string;
+  firstnameTeacher: string;
+  lastnameTeacher: string;
+  phoneTeacher: string;
+  prefixStudent1: string;
+  firstnameStudent1: string;
+  lastnameStudent1: string;
+  phoneStudent1: string;
+  nationalidStudent1: number;
+  emailStudent1: string;
+  gradeStudent1: number;
+  preferredHandStudent1: string;
+  isJoinMedtalkStudent1: boolean;
+  medtourGroupStudent1: string;
+  prefixStudent2: string;
+  firstnameStudent2: string;
+  lastnameStudent2: string;
+  phoneStudent2: string;
+  nationalidStudent2: number;
+  emailStudent2: string;
+  gradeStudent2: number;
+  preferredHandStudent2: string;
+  isJoinMedtalkStudent2: boolean;
+  medtourGroupStudent2: string;
+};
