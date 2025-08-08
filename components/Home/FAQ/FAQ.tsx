@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { faqs } from '../../../utils/constant-lists';
 import faqImage from '../../../public/faq.png';
-import lineOfficialImage from '../../../public/line-official.png';
 import faqExampleImage from '../../../public/faq-example.png';
 
 export default function FAQ() {
@@ -48,7 +47,6 @@ export default function FAQ() {
             height: 'auto',
           }}
         />
-        <Accordion sx={{ width: '90%', maxWidth: '100em', marginBottom: '3em' }}>{items}</Accordion>
         <Image
           src={faqExampleImage}
           alt="FAQ Example"
@@ -60,28 +58,7 @@ export default function FAQ() {
             height: 'auto',
           }}
         />
-        <Link
-          href="https://lin.ee/3NeEl2g"
-          target="_blank"
-          style={{
-            width: '70%',
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '2em',
-          }}
-        >
-          <Image
-            src={lineOfficialImage}
-            alt="Line Official Account"
-            width={515}
-            height={164.5}
-            style={{
-              width: '40%',
-              maxWidth: '50em',
-              height: 'auto',
-            }}
-          />
-        </Link>
+        <Accordion sx={{ width: '90%', maxWidth: '100em', marginBottom: '3em' }}>{items}</Accordion>
       </Box>
     </>
   );
