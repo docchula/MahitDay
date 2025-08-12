@@ -1,5 +1,10 @@
 import { resolve, dirname, sep as pathSep } from 'node:path';
-import { writeFile as fsWriteFile, readFile as fsReadFile, mkdir } from 'node:fs/promises';
+import {
+  writeFile as fsWriteFile,
+  readFile as fsReadFile,
+  rm as fsRm,
+  mkdir,
+} from 'node:fs/promises';
 
 const DEFAULT_BASE_DIR = resolve(process.cwd(), 'uploads/');
 
@@ -68,4 +73,22 @@ export const readFile = (name: string, options?: ReadFileOptions): Promise<Buffe
   const destination = checkFileName ? ensureSafeFilePath(name, baseDir) : resolve(baseDir, name);
 
   return fsReadFile(destination);
+};
+
+export interface DeleteFileOptions {
+  checkFileName?: boolean;
+  baseDir?: string;
+  recursive?: boolean;
+}
+
+export const deleteFile = (name: string, options?: DeleteFileOptions): Promise<boolean> => {
+  const checkFileName = options?.checkFileName ?? true;
+  const baseDir = options?.baseDir ?? DEFAULT_BASE_DIR;
+
+  const destination = checkFileName ? ensureSafeFilePath(name, baseDir) : resolve(baseDir, name);
+
+  return fsRm(destination, {
+    force: true,
+    recursive: Boolean(options?.recursive),
+  });
 };
