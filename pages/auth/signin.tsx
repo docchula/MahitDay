@@ -1,20 +1,20 @@
 import React from 'react';
-import type { InferGetStaticPropsType, GetStaticProps } from 'next';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { Button, Group, Paper, Text } from '@mantine/core';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import googleLogo from '../../public/google-logo.svg';
 import { CredentialSignin } from '../../components/DevelopmentInternals/CredentialSignin';
 
-export const getStaticProps = (async () => ({
+export const getServerSideProps = (async () => ({
   props: {
     enableDevCredentialLogin: Boolean(process.env.DEV_ENABLE_CREDENTIAL_LOGIN),
   },
-})) satisfies GetStaticProps;
+})) satisfies GetServerSideProps;
 
 export default function Login({
   enableDevCredentialLogin = false,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const handleLogin = () => {
     signIn('google', { callbackUrl: '/dashboard/info' });
   };
