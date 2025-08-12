@@ -35,3 +35,6 @@ stack.env
 # vercel
 .vercel
 *.tsbuildinfo
+
+# File uploads
+uploads/
