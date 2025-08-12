@@ -78,4 +78,4 @@ export default (async (request, ...args) => {
   return NextResponse.next();
 }) satisfies NextMiddleware;
 
-export const config = {} satisfies MiddlewareConfig;
+export const config: MiddlewareConfig = {};
