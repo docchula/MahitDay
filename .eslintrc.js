@@ -7,5 +7,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': 0,
     'react/jsx-indent-props': 'off',
+    'no-console': 'off',
   },
 };
