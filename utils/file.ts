@@ -81,7 +81,7 @@ export interface DeleteFileOptions {
   recursive?: boolean;
 }
 
-export const deleteFile = (name: string, options?: DeleteFileOptions): Promise<boolean> => {
+export const deleteFile = (name: string, options?: DeleteFileOptions): Promise<void> => {
   const checkFileName = options?.checkFileName ?? true;
   const baseDir = options?.baseDir ?? DEFAULT_BASE_DIR;
 
