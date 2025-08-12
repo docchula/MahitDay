@@ -4,87 +4,47 @@ A web application for AMSci registration and announcements
 
 Successor of [docchula/amsci-website](https://github.com/docchula/amsci-website), created by [Sarun Intaralawan](https://github.com/sarunint). Based on [Angular](https://angular.dev/).
 
-## Features
+## Getting started on development
 
-- AMSci exam registration
-- MedTalk registration
-- Exam ticket printing
-- Exam attendance
-- Score announcement
-- Certificate printing
-- Links to associated websites or files
+One simple way to get started with the development is to use VSCode's Dev Container feature.
 
-## Required maintenance
+1. Follow the instructions to install VSCode with Dev Container: https://code.visualstudio.com/docs/devcontainers/containers#_installation
 
-### Post-exam Guideline
+2. When you open this folder in VSCode, you'll get a prompt on the bottom right side of the screen. Select the **_Reopen in Container_** button.
 
-1. นำไฟล์ที่ได้จากเครื่องตรวจ export ให้อยู่ใน format ที่สามารถ query ได้ เช่น `.csv`
-   จากนั้นนำไฟล์ `.csv` ลงในฐานข้อมูลเรา เพื่อให้สามารถ query ได้
-2. นำคะแนนจาก `.csv` สร้าง `TABLE report` เพื่อนำคะแนนเข้าสู่ `TABLE students` โดยเทียบเลขที่นั่งสอบ
+![Prompt to open dev containers](docs/images/devcontainer_prompt.png)
 
-> [!CAUTION]  
-> ข้อควรระวัง ควรตรวจสอบว่าในไฟล์ `.csv` ไม่มีนักเรียนคนไหนที่มีเลขที่สอบซ้ำกัน ไม่เช่นนั้นอาจจะเขียนคะแนนซ้อนทับได้
+3. Once the container is opened (which may take a couple of minutes), try to open SQLTools to see the database. At this point, it should be empty.
 
-> [!TIP]  
-> สามารถตรวจสอบหานักเรียนที่ฝนเลขที่นั่งสอบแปลก ๆ ได้ตั้งแต่ขั้นตอนนี้ โดยอาจจะ sort เพื่อหาเลขที่นั่งสอบที่มากกว่า หรือน้อยกว่าค่าที่กำหนดไว้ (นักเรียนบางคนฝนหลักมาเกิน) โดยใช้ subquery
+![SQLTools](docs/images/sqltools_empty.png)
 
-```sql
-UPDATE students
-SET students.score = (
-    SELECT report.score
-    FROM report
-    WHERE students.student_id = report.student_id
-);
-```
+4. Run the command `npx prisma migrate deploy`
 
-Using `JOIN ON`
+![Prisma migrate](docs/images/prisma_migrate.png)
 
-```sql
-UPDATE students
-JOIN report ON students.student_id = report.student_id
-SET students.score = report.score;
-```
+5. Check back into SQLTools and you should see the database being populated with some tables.
 
-3. ตรวจสอบว่า ไม่มีนักเรียนคนใดที่มาเข้าสอบแต่ไม่มีคะแนนในระบบ
-   - ตรวจสอบจากคะแนน (ใช้วิธี `SELECT/ORDER` ออกมา)
-     - คนที่เข้าสอบ ต้องมีคะแนนในช่องคะแนน
-     - คนที่ไม่เข้าสอบ คะแนนจะต้องเป็น `NULL`
-   - จำนวนนักเรียนที่มีคะแนน ต้องเท่ากับจำนวน row ในไฟล์คะแนนที่ได้มา ต้องเท่ากับกระดาษคำตอบที่เก็บได้
-     - ดูจำนวน row ใน `report` หลังจากทำการ `UPDATE students` แล้ว
-   - ตรวจสอบ query จากไฟล์ผลตรวจข้อสอบ ว่า `student_id` ไหนบ้างในไฟล์ผลตรวจข้อสอบที่ไม่มีใน `TABLE students` (ไม่ได้นำไป `UPDATE`)
+![SQLTools](docs/images/sqltools_init.png)
 
-```sql
-SELECT report.student_id
-FROM report
-LEFT JOIN students ON report.student_id = students.student_id
-WHERE students.student_id IS NULL;
-```
+### Accessing the app and database
 
-> [!IMPORTANT]  
-> ปัญหาที่พบได้บ่อยคือนักเรียนฝนเลขที่นั่งสอบมาไม่ถูกต้อง หรือเครื่องอ่านเลขที่นั่งสอบไม่ถูกต้อง **แล้วเครื่องอ่านได้เป็นเลขที่ไม่มีในเลขที่สอบ ทำให้ไม่ถูกนำคะแนนไปใส่ใน `TABLE students`**
-4. นำคะแนนของนักเรียนในทีมเดียวกันมารวมเป็นคะแนนรวมของทีมและเรียงลำดับคะแนนตามทีม เพื่อคัดเลือกทีมที่ผ่านเข้ารอบ
+When you run `npm run dev`, a prompt will show you how to open the app on the bottom right side of the screen.
 
-```sql
-SELECT
-    teams.team_reference,
-    teams.name,
-    teams.email,
-    SUM(students.student_score) AS team_summary_score,
-    COUNT(DISTINCT CASE WHEN students.student_score IS NOT NULL THEN students.id END) AS number_of_students_with_score,
-    users.province
-FROM teams
-LEFT JOIN students ON teams.team_reference = students.team_reference
-INNER JOIN users ON users.email = teams.email
-GROUP BY
-    teams.team_reference, teams.name, teams.email, users.province
-ORDER BY team_summary_score DESC;
-```
+![Open app port popup](docs/images/devcontainer_appport.png)
 
-## Dependencies
+If you'd like to access the database (e.g., using GUI tools such as DBeaver or DataGrip), go to the **_PORTS_** panel (should be a tab on the bottom panel). Then select **_Forward a Port_** (or **_Add Port_**) and enter `3306` as the port number. Then you can connect to the database using `localhost` as the host/IP and `3306` as the port number. The username is `root`, the password is empty (no password), and the database name is `DATABASE`.
 
-- [Next.js](https://nextjs.org/)
-- [Mantine](https://mantine.dev/)
-- Relational Database e.g. MySQL
+![Ports panel](docs/images/devcontainer_dbport.png)
+
+### Issues with Dev Containers
+
+In case of issues with the containers, go into the Docker control panel and delete containers with **_mahitday_devcontainer_** in the name.
+
+Alternatively, you can use the "Rebuild" command in VSCode (open the command dialog box with `Ctrl+Shift+P`). It will be named "Rebuild and Reopen" or similar if you're outside the container, and named "Rebuild" or similar if you're inside the container.
+
+![Dev Containers rebuild](docs/images/devcontainer_rebuild.png)
+
+If you'd like to reset the database (e.g., in case you've corrupted it), then delete the **_volume_** with the name **_mahitday_devcontainer_mahitday-dev-db_** and rebuild the containers (see above).
 
 ## Developers
 
