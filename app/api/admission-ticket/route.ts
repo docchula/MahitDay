@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
     base64Image_1 = (await image_1).toString('base64');
     base64Image_2 = (await image_2).toString('base64');
   } catch (error) {
-    console.error('Error during processing image data', error);
+    console.log('Error during processing image data', error);
     return NextResponse.json({ error: 'Error during processing image data' });
   }
 

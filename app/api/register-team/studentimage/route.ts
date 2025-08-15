@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     const imageContent = await readFile(`images/${imageName}`);
     return NextResponse.json({ image: imageContent.toString('base64') });
   } catch (error) {
-    console.error('Error during processing image data', error);
+    console.log('Error during processing image data', error);
     return NextResponse.json({ error: 'Error during processing image data' });
   }
 }
