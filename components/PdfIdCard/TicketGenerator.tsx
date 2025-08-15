@@ -122,7 +122,7 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
     doc.setFont('THSarabunChula-Regular');
 
     doc.setFontSize(26);
-    doc.text('บัตรเข้าร่วมแข่งขัน AMSCI - 2025', 20, 20);
+    doc.text('บัตรเข้าร่วมแข่งขัน MahitdayQuiz - 2025', 20, 20);
 
     doc.setFontSize(20);
     doc.text('ตัดบัตรนี้เป็นสามส่วนและแสดงให้กรรมการคุมสอบหน้าห้องสอบ', 20, 30);
@@ -144,7 +144,7 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
     //doc.rect(150, 100, 15, 15, 'F');
     doc.setFontSize(20);
     doc.setTextColor(0, 0, 160);
-    doc.text('AMSCI 2025', 168, 70, undefined, -90);
+    doc.text('MahitdayQuiz 2025', 168, 70, undefined, -90);
 
     //doc.text("AMSCI 2024", 170, 75, null, -90);
     doc.setTextColor(0, 0, 0);
@@ -172,7 +172,7 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
     doc.setFontSize(20);
 
     doc.setTextColor(0, 0, 160);
-    doc.text('AMSCI 2025', 168, 150, undefined, -90);
+    doc.text('MahitdayQuiz 2025', 168, 150, undefined, -90);
     doc.setTextColor(0, 0, 0);
 
     doc.setFontSize(18);
@@ -210,7 +210,7 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
     doc.rect(120, 65, 40, 50);
     doc.rect(120, 145, 40, 50);
     doc.text(new Date().toLocaleString(), 20, 210);
-    doc.save('amsci2025-ticket.pdf');
+    doc.save('MahitdayQuiz2025-ticket.pdf');
     toggleLoader(false);
   };
 

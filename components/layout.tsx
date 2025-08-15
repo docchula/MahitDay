@@ -84,7 +84,7 @@ export default function Layout({ children }: LayoutProps) {
               </MediaQuery>
               <Link href="/" passHref>
                 <Button variant="subtle" size="lg">
-                  AMSci
+                MahitdayQuiz
                 </Button>
               </Link>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>

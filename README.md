@@ -1,8 +1,8 @@
-# AMSci Registration Website v2
+# MahitdayQuiz Registration Website v2
 
-A web application for AMSci registration and announcements
+A web application for MahitdayQuiz registration and announcements
 
-Successor of [docchula/amsci-website](https://github.com/docchula/amsci-website), created by [Sarun Intaralawan](https://github.com/sarunint). Based on [Angular](https://angular.dev/).
+Successor of [docchula/amsci-website](https://github.com/docchula/MahitdayQuiz), created by [Sarun Intaralawan](https://github.com/sarunint). Based on [Angular](https://angular.dev/).
 
 ## Getting started on development
 

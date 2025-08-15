@@ -72,7 +72,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           >
             <Link href="/admin" passHref>
               <Button variant="subtle" size="lg">
-                AMSci Admin
+                MahitdayQuiz Admin
               </Button>
             </Link>
             <Button variant="default" size="md" onClick={() => signOut()}>

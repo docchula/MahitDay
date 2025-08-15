@@ -31,11 +31,11 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   return (
     <>
       <Head>
-        <title>AMSci</title>
+        <title>MahitdayQuiz</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta
           name="description"
-          content="การแข่งขันตอบปัญหาวิชาการชีววิทยาและวิทยาศาสตร์การแพทย์ เนื่องในงานสัปดาห์วันอานันทมหิดล"
+          content="โครงการตอบปัญหาวิชาการวิทยาศาสตร์สุขภาพและพระราชประวัติสมเด็จพระมหิตลาธิเบศรฯ"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -46,7 +46,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
             colorScheme,
             fontFamily: ibm.style.fontFamily,
             colors: {
-              amsci: [
+              MahitdayQuiz: [
                 '#fdeaea',
                 '#f9c9ca',
                 '#f49fa1',
@@ -59,7 +59,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                 '#873135',
               ],
             },
-            primaryColor: 'amsci',
+            primaryColor: 'MahitdayQuiz',
           }}
           withGlobalStyles
           withNormalizeCSS
