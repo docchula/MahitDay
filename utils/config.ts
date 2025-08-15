@@ -1,4 +1,6 @@
-export const REGISTRATION_STAGE = 'register';
+export type RegisterStage = 'register' | 'open' | 'close';
+
+export const REGISTRATION_STAGE: RegisterStage = 'register';
 // open: open the website but user cannot register (use when registration is full)
 // close: close the website
 // register: user can register

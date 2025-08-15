@@ -1,9 +1,20 @@
+import React from 'react';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { Button, Group, Paper, Text } from '@mantine/core';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import googleLogo from '../../public/google-logo.svg';
+import { CredentialSignin } from '../../components/DevelopmentInternals/CredentialSignin';
 
-export default function Login() {
+export const getServerSideProps = (async () => ({
+  props: {
+    enableDevCredentialLogin: Boolean(process.env.DEV_ENABLE_CREDENTIAL_LOGIN),
+  },
+})) satisfies GetServerSideProps;
+
+export default function Login({
+  enableDevCredentialLogin = false,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const handleLogin = () => {
     signIn('google', { callbackUrl: '/dashboard/info' });
   };
@@ -32,6 +43,12 @@ export default function Login() {
             กรุณาเข้าสู่ระบบด้วย Web browser เท่านั้น เช่น Google Chrome, Safari, Microsoft Edge
             หรือ Firefox
           </Text>
+
+          {enableDevCredentialLogin && (
+            <div style={{ marginTop: '2rem' }}>
+              <CredentialSignin redirect="/dashboard/info" />
+            </div>
+          )}
         </Paper>
       </div>
     </>
