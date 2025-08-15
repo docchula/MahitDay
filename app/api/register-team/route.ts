@@ -441,7 +441,7 @@ export async function PUT(req: NextRequest) {
 
         return NextResponse.json({ status: 'ok' });
       } catch (error) {
-        console.error('Error during processing update team data', error);
+        console.log('Error during processing update team data', error);
         return NextResponse.json({ status: 'error please try again', error });
       }
     } else {
