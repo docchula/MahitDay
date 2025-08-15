@@ -7,9 +7,6 @@ module.exports = withBundleAnalyzer({
   eslint: {
     ignoreDuringBuilds: true,
   },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
   images: {
     remotePatterns: [
       {
@@ -22,5 +19,5 @@ module.exports = withBundleAnalyzer({
     locales: ['th'],
     defaultLocale: 'th',
   },
-  output: "standalone",
+  output: 'standalone',
 });
