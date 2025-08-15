@@ -28,7 +28,7 @@ export default function FAQ() {
           fw={800}
           align="center"
           mt={80}
-          mb={80} 
+          mb={80}
           sx={{
             fontSize: '3rem',
             color: '#888',
