@@ -82,7 +82,7 @@ export default function StudentForm({
     if (onWarningChange) {
       onWarningChange(showWarning !== '');
     }
-  }, [showWarning, onWarningChange]);
+  }, [showWarning]);
 
   return (
     <>

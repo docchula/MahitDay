@@ -48,7 +48,7 @@ export async function PUT(req: NextRequest) {
         },
       });
 
-      await writeFile(`slip/${teamRef}`, await image.bytes());
+      await writeFile(`slip/${teamRef}`, new Uint8Array(await image.arrayBuffer()));
 
       NextResponse.json({ updateTeam });
     }
