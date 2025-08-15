@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '2em' }}>
-        <Title order={1}>MahitDay Quiz</Title>
+        <Title order={1}>Mahitday Quiz</Title>
         <ColorSchemeToggle />
       </Box>
       <Flex gap="md" justify="center" align="center" direction="column">
@@ -33,7 +33,7 @@ export default function Home() {
           width={800}
           height={300}
           priority
-          style={{ maxWidth: '60%', height: 'auto', marginTop: '3em', marginBottom: '0.5em' }}
+          style={{ maxWidth: '50%', height: 'auto' }}
         />
         <div style={{ margin: '1.5em' }}>
           <Divider size="sm" my="md" color="#e6676c" sx={{ width: '30%' }} />

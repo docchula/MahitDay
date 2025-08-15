@@ -1,6 +1,5 @@
 import { Accordion, Box, Text } from '@mantine/core';
 import Image from 'next/image';
-import Link from 'next/link';
 import { faqs } from '../../../utils/constant-lists';
 import faqImage from '../../../public/faq.png';
 import faqExampleImage from '../../../public/faq-example.png';
