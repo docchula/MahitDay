@@ -203,6 +203,7 @@ export async function PUT(req: NextRequest) {
     await Promise.all(tasks);
     return NextResponse.json({ status: 'ok' });
   } catch (error) {
+    console.log('error in PUT api/admin/edit-student', error);
     return NextResponse.json({ status: 'error please try again', error });
   }
 }

@@ -249,6 +249,7 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json({ status: 'ok' });
     } catch (error) {
+      console.log('error in POST api/register-team', error);
       return NextResponse.json({ status: 'error please try again', error });
     }
   } else {
