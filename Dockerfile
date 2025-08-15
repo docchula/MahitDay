@@ -34,9 +34,6 @@ WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
 COPY --from=builder /app/package.json /app
 COPY --from=builder /app/public ./public
 
@@ -57,8 +54,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 #     apk add --no-cache bash && \
 #     VERSION=$(node -e 'console.log(require("./package.json").devDependencies.prisma)') && \
 #     pnpm add prisma@$VERSION
-
-USER nextjs
 
 EXPOSE 3000
 
