@@ -6,7 +6,7 @@ services:
     image: mahitday
     pull_policy: build
     volumes:
-      - /storage/mahitday/uploads/:/app/uploads/
+      - /storage/mahitday/uploads/:/app/uploads/:rw,z
     restart: always
     env_file:
       - stack.env
