@@ -147,9 +147,6 @@ export default function StudentForm({
         <Space h="sm" />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Text>สำเนาบัตรประจำตัวประชาชน</Text>
-          <Button variant="subtle" compact onClick={open} sx={{ margin: '0.1em' }}>
-            วิธีเซ็น
-          </Button>
         </Box>
         <DropPicture
           descriptiontext='ขอให้ใช้สำเนาบัตรประขาชนที่ถ่ายหนัาบัตรด้านเดียว เซ็นรับรองสำเนาถูกต้อง วันที่ที่ทำการสมัคร พร้อมระบุว่า "ใช้เพื่อสมัครเข้าร่วมโครงการตอบปัญหาวิชาการวิทยาศาสตร์สุขภาพและพระราชประวัติสมเด็จพระมหิตลาธิเบศรฯ(MahitdayQuiz) ประจำปีการศึกษา 2568 เท่านั้น" โดยมีขนาดไฟล์ไม่เกิน 2 MB'
