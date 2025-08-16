@@ -158,6 +158,7 @@ export default function AddTeamForm() {
           setNationalIdImage2={setNationalIdImage2}
           handleSubmit={handleSubmit}
           submitText="ยืนยัน"
+          submitButtonColor="#d49559"
         />
       )}
     </>

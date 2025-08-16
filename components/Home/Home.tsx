@@ -23,7 +23,10 @@ export default function Home() {
   return (
     <main>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: '2em' }}>
-        <Title order={1}>Mahitday Quiz</Title>
+        <Title order={1}>
+          <span style={{ color: '#485FB2' }}>Mahitday</span>{' '}
+          <span style={{ color: '#FBB26D' }}>Quiz</span>
+        </Title>
         <ColorSchemeToggle />
       </Box>
       <Flex gap="md" justify="center" align="center" direction="column">
@@ -36,7 +39,7 @@ export default function Home() {
           style={{ maxWidth: '50%', height: 'auto' }}
         />
         <div style={{ margin: '1.5em' }}>
-          <Divider size="sm" my="md" color="#e6676c" sx={{ width: '30%' }} />
+          <Divider size="sm" my="md" color="#FBB26D" sx={{ width: '30%' }} />
           <MediaQuery largerThan="lg" styles={{ marginRight: '15em' }}>
             <Title order={3}>
               โครงการตอบปัญหาวิชาการวิทยาศาสตร์สุขภาพและพระราชประวัติสมเด็จพระมหิตลาธิเบศรฯ
@@ -54,9 +57,7 @@ export default function Home() {
               radius="xl"
               href={REGISTRATION_STAGE === 'register' ? '/dashboard/info' : '/dashboard/step4'}
               disabled={REGISTRATION_STAGE === 'close'}
-              sx={{
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-              }}
+              sx={{ color: '#FBB26D', borderColor: '#FBB26D' }}
             >
               {REGISTRATION_STAGE === 'register'
                 ? 'สมัครสอบ'
@@ -70,6 +71,7 @@ export default function Home() {
               size="xl"
               radius="xl"
               href="/AMSci-2021-preliminary-MCQs.pdf"
+              sx={{ color: '#FBB26D', borderColor: '#FBB26D' }}
             >
               ข้อสอบเก่า 2021
             </Button>
@@ -79,6 +81,7 @@ export default function Home() {
               size="xl"
               radius="xl"
               href="/Pre-Elimination-Round-AMSci-2024.pdf"
+              sx={{ color: '#FBB26D', borderColor: '#FBB26D' }}
             >
               ข้อสอบเก่า 2024
             </Button>

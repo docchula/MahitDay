@@ -70,7 +70,16 @@ export default function PaymentForm({ teamPrice, teamRef, close, notify }: Payme
             </div>
             <Space h="sm" />
             <Center>
-              <Button type="submit">ยืนยัน</Button>
+              <Button
+                type="submit"
+                sx={{
+                  backgroundColor: '#d49559',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#716FD0' },
+                }}
+              >
+                ยืนยัน
+              </Button>
             </Center>
           </form>
         </Center>

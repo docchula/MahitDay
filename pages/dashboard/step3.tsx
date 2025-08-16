@@ -105,7 +105,16 @@ export default function index() {
           {isAvailable && (
             <>
               <Space h="sm" />
-              <Button onClick={handleRegister}>เพิ่มทีม</Button>
+              <Button
+                onClick={handleRegister}
+                sx={{
+                  backgroundColor: '#d49559',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#716FD0' },
+                }}
+              >
+                เพิ่มทีม
+              </Button>
               <Space h="md" />
               <Collapse in={openedTeamForm} transitionDuration={500}>
                 <AddTeamForm />

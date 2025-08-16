@@ -57,8 +57,8 @@ export default function Layout({ children }: LayoutProps) {
               <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
                 <span>Copyright 2024, IT Division, SMCU</span>
               </MediaQuery>
-               {/* @ts-ignore */}
-              {(REGISTRATION_STAGE === 'register' && isAvailable) && <PaginationTab />}
+              {/* @ts-ignore */}
+              {REGISTRATION_STAGE === 'register' && isAvailable && <PaginationTab />}
               <ColorSchemeToggle />
             </div>
           </Footer>
@@ -83,8 +83,13 @@ export default function Layout({ children }: LayoutProps) {
                 />
               </MediaQuery>
               <Link href="/" passHref>
-                <Button variant="subtle" size="lg">
-                MahitdayQuiz
+                <Button variant="subtle" size="xl">
+                  <span style={{ color: '#485FB2', fontWeight: 'bold', fontSize: '2rem' }}>
+                    Mahitday
+                  </span>
+                  <span style={{ color: '#FBB26D', fontWeight: 'bold', fontSize: '2rem' }}>
+                    Quiz
+                  </span>
                 </Button>
               </Link>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>

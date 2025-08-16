@@ -21,7 +21,7 @@ export default function index() {
               <Link href="/dashboard/step1" passHref>
                 <Button
                   variant="gradient"
-                  gradient={{ from: '#d85b61', to: '#f49fa1' }}
+                  gradient={{ from: '#716FD0', to: '#FBB26D' }}
                   size="xl"
                   radius="lg"
                   mt="md"

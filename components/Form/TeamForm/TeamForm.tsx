@@ -194,7 +194,17 @@ export default function TeamForm({
           </Card>
           <br />
           <Group position="right" mt="md">
-            <Button type="submit" color={submitButtonColor} disabled={isSubmitDisabled}>
+            <Button
+              type="submit"
+              disabled={isSubmitDisabled}
+              sx={{
+                backgroundColor: submitButtonColor || undefined,
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#716FD0',
+                },
+              }}
+            >
               {submitText}
             </Button>
           </Group>

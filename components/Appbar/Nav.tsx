@@ -89,11 +89,22 @@ export default function Nav() {
               return !isAgree || !isStudentDone;
             case 'step5':
               return !isAgree || !isPaymentDone;
-              // return true;
+            // return true;
             default:
               return false;
           }
         })()}
+        styles={{
+          root: {
+            '&[data-active]': {
+              backgroundColor: '#26262e',
+              color: '#716FD0',
+              '&:hover': {
+                backgroundColor: '#26262e',
+              },
+            },
+          },
+        }}
       />
       {/* {index === navList.length - 6 && <Divider m="sm" />}
       {index === navList.length - 2 && <Divider m="sm" />} */}

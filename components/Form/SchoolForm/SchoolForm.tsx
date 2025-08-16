@@ -119,11 +119,27 @@ export default function SchoolForm() {
 
             <Group position="right" mt="md">
               {data.school ? (
-                <Button type="submit" color="orange">
+                <Button
+                  type="submit"
+                  sx={{
+                    backgroundColor: '#d49559',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#716FD0' },
+                  }}
+                >
                   แก้ไข
                 </Button>
               ) : (
-                <Button type="submit">ส่ง</Button>
+                <Button
+                  type="submit"
+                  sx={{
+                    backgroundColor: '#d49559',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#716FD0' },
+                  }}
+                >
+                  ส่ง
+                </Button>
               )}
             </Group>
           </Box>

@@ -42,39 +42,41 @@ export default function index() {
   const [visible, setVisible] = useState(false);
 
   const handleStatusChange = async (teamRef: string) => {
-     const confirmed = window.confirm('ต้องการยืนยันการสมัครหรือไม่ คุณจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว');
-  if (!confirmed) return;
+    const confirmed = window.confirm(
+      'ต้องการยืนยันการสมัครหรือไม่ คุณจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว'
+    );
+    if (!confirmed) return;
 
-  try {
-    const response = await fetch('/api/change-status', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ team_reference: teamRef }),
-    });
-    const data = await response.json();
-    if (data.status === 'ok') {
-      // Refresh the page or update the data to show the new status
-      toast.success('อัปเดตสถานะสำเร็จ กรุณารีเฟรชหน้าจอ', {
-        position: 'bottom-right',
-        theme: 'colored',
+    try {
+      const response = await fetch('/api/change-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ team_reference: teamRef }),
       });
-      // You might want to revalidate the SWR data here
-    } else {
-      toast.error('เกิดข้อผิดพลาด', {
+      const data = await response.json();
+      if (data.status === 'ok') {
+        // Refresh the page or update the data to show the new status
+        toast.success('อัปเดตสถานะสำเร็จ กรุณารีเฟรชหน้าจอ', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+        // You might want to revalidate the SWR data here
+      } else {
+        toast.error('เกิดข้อผิดพลาด', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ', {
         position: 'bottom-right',
         theme: 'colored',
       });
     }
-  } catch (error) {
-    console.error('Error:', error);
-    toast.error('เกิดข้อผิดพลาดในการเชื่อมต่อ', {
-      position: 'bottom-right',
-      theme: 'colored',
-    });
-  }
-};
+  };
 
   const notify = () =>
     toast.success('ส่งหลักฐานสำเร็จ กรุณาตรวจผลการตรวจสอบในภายหลัง', {
@@ -97,7 +99,14 @@ export default function index() {
                   return (
                     <>
                       {isAvailable ? (
-                        <Button onClick={() => handleStatusChange(user.team_reference)}>
+                        <Button
+                          onClick={() => handleStatusChange(user.team_reference)}
+                          sx={{
+                            backgroundColor: '#d49559',
+                            color: 'white',
+                            '&:hover': { backgroundColor: '#716FD0' },
+                          }}
+                        >
                           ยืนยันการสมัคร
                         </Button>
                       ) : (
