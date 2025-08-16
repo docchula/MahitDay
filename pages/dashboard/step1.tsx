@@ -16,7 +16,7 @@ export default function index() {
         <Text>
           กติกาและข้อตกลงในการแข่งขัน ผู้สมัครสามารถศึกษากติกากำหนดการแข่งขันได้ที่
           {/* <a href="https://drive.google.com/file/d/10zizcL6U5bX2itVkCpx1nUvuhdtoqMm8/view?usp=sharing" target="_blank" rel="noopener noreferrer"> */}
-          <a href="/guide-AMSci-2025.pdf" target="_blank" rel="noopener noreferrer">
+          <a href="/guide-MahitdayQuiz-2025.pdf" target="_blank" rel="noopener noreferrer">
             <Button variant="subtle" compact>
               กติกาการแข่งขันฉบับเต็ม
             </Button>
