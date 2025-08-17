@@ -13,7 +13,7 @@ export default function FAQ() {
       <Accordion.Panel>
         {faq.answer.split('\n').map((line) => (
           <Text key={line} mb="xs">
-            A:{line}
+            {line}
           </Text>
         ))}
       </Accordion.Panel>
