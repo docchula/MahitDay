@@ -29,7 +29,7 @@ export default function EditData() {
       </Center>
       <Space h="lg" />
       {fetchData && (
-        <AdminEditTeamForm email={email} team_code={teamCode} />
+        <AdminEditTeamForm email={email.trim()} team_code={teamCode.trim()} />
       )}
     </AdminLayout>
   );
