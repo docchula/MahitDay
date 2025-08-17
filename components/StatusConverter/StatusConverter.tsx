@@ -26,7 +26,7 @@ export default function StatusConverter({ statusNumber }: StatusProp) {
       color = 'red';
       break;
     case 4:
-      text = 'พิมพ์บัตรสอบได้ที่หน้าชำระค่าสมัคร';
+      text = 'พิมพ์บัตรสอบได้ที่หน้ายืนยันการสมัคร';
       color = 'green';
       break;
     default:

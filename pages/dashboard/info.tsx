@@ -13,7 +13,7 @@ export default function index() {
               <List.Item>ยืนยันว่ารับทราบและยอมรับข้อตกลงเกี่ยวกับการแข่งขัน</List.Item>
               <List.Item>กรอกข้อมูลโรงเรียน</List.Item>
               <List.Item>กรอกข้อมูลผู้สมัครแต่ละทีม</List.Item>
-              <List.Item>ชำระค่าสมัครแต่ละทีมแยกกันและอัปโหลดหลักฐานการชำระเงิน</List.Item>
+              <List.Item>ยืนยันการสมัคร</List.Item>
               <List.Item>ตรวจสอบสถานะการสมัคร</List.Item>
               <List.Item>พิมพ์ใบสมัคร</List.Item>
             </List>

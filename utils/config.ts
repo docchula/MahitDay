@@ -9,4 +9,4 @@ export const ALLOW_CERTIFICATE_PRINTING = false; // true or false (REGISTRATION_
 export const MAX_MEDTALK_STUDENT = 199; //ตั้ง 199 กันคนลงพร้อมกัน 2 คนเกินเป็น 201
 export const MAX_Gross_anatomy = 100;
 export const MAX_Histology = 100;
-export const MAX_TEAM = 650;
+export const MAX_TEAM = 30;
