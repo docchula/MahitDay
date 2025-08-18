@@ -32,6 +32,7 @@ model teams {
   enrollment_status Int
   team_reference    String     @unique // use to reference to team in general (for devs) : not easily guessed or auto-incremented like team-id
   created_at        DateTime   @default(now())
+  confirmed_at      DateTime?  
 }
 
 model students {

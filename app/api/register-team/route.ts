@@ -19,6 +19,14 @@ export async function GET() {
       where: {
         email: session.user?.email as string,
       },
+      select: {
+        team_reference: true,
+        name: true,
+        total_payment: true,
+        enrollment_status: true,
+        created_at: true,
+        confirmed_at: true,
+      },
     });
 
     if (team.length > 0) {

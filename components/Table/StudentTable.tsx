@@ -16,8 +16,6 @@ interface StudentData {
   email: string;
   phone_number: string;
   grade: number;
-  is_join_medtalk: boolean;
-  medtour_group: string;
   preferred_hand: string;
   student_reference: string;
   student_score: number | null;
@@ -79,15 +77,6 @@ export default function StudentTable() {
       {
         accessorKey: 'grade',
         header: 'Grade',
-      },
-      {
-        accessorKey: 'is_join_medtalk',
-        header: 'Medtalk',
-        Cell: ({ cell }) => (cell.getValue() ? 'Yes' : 'No'),
-      },
-      {
-        accessorKey: 'medtour_group',
-        header: 'MedTour Group',
       },
       {
         accessorKey: 'preferred_hand',
