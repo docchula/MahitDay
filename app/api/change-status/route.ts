@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
       },
       data: {
         enrollment_status: 1, // Change status to 1
+        confirmed_at: new Date(),
       },
     });
     return NextResponse.json({ status: 'ok' });

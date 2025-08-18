@@ -22,15 +22,18 @@ import AlertBadge from '../../components/AlertBadge/AlertBadge';
 import LoadingPlaceholder from '../../components/Placeholder/LoadingPlaceholder';
 import StatusConverter from '../../components/StatusConverter/StatusConverter';
 import { useRegisterStatus, useStatus } from '../../hooks/status';
-import { ALLOW_CERTIFICATE_PRINTING } from '../../utils/config';
+import { ALLOW_CERTIFICATE_PRINTING, RESERVED_TEAM, MAX_TEAM } from '../../utils/config';
 
 const TicketGenerator = lazy(() => import('../../components/PdfIdCard/TicketGenerator'));
 
-interface User {
-  team_reference: string;
+interface Team {
+  id: number;
   name: string;
-  total_payment: number;
+  email: string;
   enrollment_status: number;
+  team_reference: string;
+  created_at: string;
+  confirmed_at?: string; // ADD THIS LINE
 }
 
 export default function index() {
@@ -41,9 +44,22 @@ export default function index() {
   const [opened, { open, close }] = useDisclosure(false);
   const [visible, setVisible] = useState(false);
 
+  // Sort and filter teams based on confirmation time
+  const registeredTeams = Array.isArray(data)
+    ? data
+        .filter((team: Team) => team.enrollment_status !== 0)
+        .sort(
+          (a: Team, b: Team) =>
+            new Date(a.confirmed_at ?? '').getTime() -
+            new Date(b.confirmed_at ?? '').getTime(),
+        )
+    : [];
+
+  const actualTeamLimit = MAX_TEAM - RESERVED_TEAM;
+
   const handleStatusChange = async (teamRef: string) => {
     const confirmed = window.confirm(
-      'ต้องการยืนยันการสมัครหรือไม่ คุณจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว'
+      'ต้องการยืนยันการสมัครหรือไม่ คุณจะไม่สามารถแก้ไขได้หลังจากยืนยันแล้ว',
     );
     if (!confirmed) return;
 
@@ -57,7 +73,6 @@ export default function index() {
       });
       const data = await response.json();
       if (data.status === 'ok') {
-        // Refresh the page or update the data to show the new status
         toast.success('อัปเดตสถานะสำเร็จ กรุณารีเฟรชหน้าจอ', {
           position: 'bottom-right',
           theme: 'colored',
@@ -88,53 +103,70 @@ export default function index() {
     setTeamPrice(price);
     setTeamRef(ref);
   };
-  const rows = Array.isArray(data)
-    ? data.map((user: User) => (
-        <tr key={user.team_reference}>
-          <td>{user.name}</td>
-          <td style={{ textAlign: 'right' }}>
-            {(() => {
-              switch (user.enrollment_status) {
-                case 0:
-                  return (
-                    <>
-                      {isAvailable ? (
-                        <Button
-                          onClick={() => handleStatusChange(user.team_reference)}
-                          sx={{
-                            backgroundColor: '#d49559',
-                            color: 'white',
-                            '&:hover': { backgroundColor: '#716FD0' },
-                          }}
-                        >
-                          ยืนยันการสมัคร
-                        </Button>
-                      ) : (
-                        <Badge color="orange" size="xl" variant="filled">
-                          ปิดรับสมัคร
-                        </Badge>
-                      )}
-                    </>
-                  );
-                case 4:
-                  return (
-                    <Suspense fallback={<Loader size="sm" mx="auto" />}>
-                      <TicketGenerator
-                        team_reference={user.team_reference}
-                        toggleLoader={setVisible}
-                      />
-                    </Suspense>
-                  );
-                default:
-                  return <StatusConverter statusNumber={user.enrollment_status} />;
-              }
-            })()}
-          </td>
-        </tr>
-      ))
-    : [];
-  const { isAgree } = useStatus();
 
+  const rows = Array.isArray(data)
+    ? data.map((user: Team) => {
+        // Find the team's rank in the confirmed teams list
+        const regIndex = registeredTeams.findIndex(
+          (t) => t.team_reference === user.team_reference,
+        );
+        let statusElement;
+        if (user.enrollment_status === 0) {
+          statusElement = (
+            <>
+              {isAvailable ? (
+                <Button
+                  onClick={() => handleStatusChange(user.team_reference)}
+                  sx={{
+                    backgroundColor: '#d49559',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#716FD0' },
+                  }}
+                >
+                  ยืนยันการสมัคร
+                </Button>
+              ) : (
+                <Badge color="orange" size="xl" variant="filled">
+                  ปิดรับสมัคร
+                </Badge>
+              )}
+            </>
+          );
+        } else if (user.enrollment_status === 4) {
+          statusElement = (
+            <Suspense fallback={<Loader size="sm" mx="auto" />}>
+              <TicketGenerator team_reference={user.team_reference} toggleLoader={setVisible} />
+            </Suspense>
+          );
+        } else if (regIndex !== -1 && regIndex < actualTeamLimit) {
+          // Actual team slot (confirmed, within limit)
+          statusElement = <StatusConverter statusNumber={user.enrollment_status} />;
+        } else if (
+          regIndex !== -1 &&
+          regIndex >= actualTeamLimit &&
+          regIndex < actualTeamLimit + RESERVED_TEAM
+        ) {
+          // Reserved team slot (confirmed, after limit)
+          statusElement = (
+            <StatusConverter
+              statusNumber={user.enrollment_status}
+              reservedOrder={regIndex - actualTeamLimit + 1}
+            />
+          );
+        } else {
+          // Normal team
+          statusElement = <StatusConverter statusNumber={user.enrollment_status} />;
+        }
+        return (
+          <tr key={user.team_reference}>
+            <td>{user.name}</td>
+            <td style={{ textAlign: 'right' }}>{statusElement}</td>
+          </tr>
+        );
+      })
+    : [];
+
+  const { isAgree } = useStatus();
   const router = useRouter();
 
   useEffect(() => {

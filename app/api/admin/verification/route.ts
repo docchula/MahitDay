@@ -16,7 +16,7 @@ export async function GET() {
       enrollment_status: 1,
     },
     orderBy: {
-      created_at: 'asc',
+      confirmed_at: 'asc',
     },
     select: {
       name: true,
