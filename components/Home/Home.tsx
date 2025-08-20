@@ -70,22 +70,11 @@ export default function Home() {
               variant="outline"
               size="xl"
               radius="xl"
-              href="/AMSci-2021-preliminary-MCQs.pdf"
+              href="/mahitday2019mcqs.pdf"
               sx={{ color: '#FBB26D', borderColor: '#FBB26D' }}
             >
-              ข้อสอบเก่า 2021
+              ข้อสอบเก่า 2019
             </Button>
-            <Button
-              component={Link}
-              variant="outline"
-              size="xl"
-              radius="xl"
-              href="/Pre-Elimination-Round-AMSci-2024.pdf"
-              sx={{ color: '#FBB26D', borderColor: '#FBB26D' }}
-            >
-              ข้อสอบเก่า 2024
-            </Button>
-            <Indicator> NEW </Indicator>
           </Group>
           <SocialIcons />
         </div>
