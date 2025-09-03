@@ -181,22 +181,36 @@ export async function PUT(req: NextRequest) {
 
     if (student_1_image) {
       tasks.push(
-        writeFile(`images/${student1Ref}`, new Uint8Array(await student_1_image.arrayBuffer()))
+        (async () => {
+          await writeFile(
+            `images/${student1Ref}`,
+            new Uint8Array(await student_1_image.arrayBuffer())
+          );
+        })()
       );
     }
     if (student_1_id) {
       tasks.push(
-        writeFile(`cards/${student1Ref}`, new Uint8Array(await student_1_id.arrayBuffer()))
+        (async () => {
+          await writeFile(`cards/${student1Ref}`, new Uint8Array(await student_1_id.arrayBuffer()));
+        })()
       );
     }
     if (student_2_image) {
       tasks.push(
-        writeFile(`images/${student2Ref}`, new Uint8Array(await student_1_image.arrayBuffer()))
+        (async () => {
+          await writeFile(
+            `images/${student2Ref}`,
+            new Uint8Array(await student_2_image.arrayBuffer())
+          );
+        })()
       );
     }
     if (student_2_id) {
       tasks.push(
-        writeFile(`cards/${student2Ref}`, new Uint8Array(await student_2_id.arrayBuffer()))
+        (async () => {
+          await writeFile(`cards/${student2Ref}`, new Uint8Array(await student_2_id.arrayBuffer()));
+        })()
       );
     }
 
