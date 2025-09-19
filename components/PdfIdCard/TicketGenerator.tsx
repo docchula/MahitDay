@@ -151,10 +151,17 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
 
     doc.setFontSize(18);
     doc.text(student_1_name, 35, 80);
-    doc.text(student_1_location, 35, 89);
-    doc.text(student_1_school, 35, 98);
-    doc.text(team, 35, 107);
-    doc.text(student_1_medtalk, 35, 116);
+
+    // Split location into lines and render each line with offset
+    const student_1_location_lines = student_1_location.split('\n');
+    student_1_location_lines.forEach((line, idx) => {
+      doc.text(line, 35, 89 + idx * 7); // 7 is line height, adjust as needed
+    });
+    const student_1_location_height = 89 + (student_1_location_lines.length - 1) * 7;
+
+    doc.text(student_1_school, 35, student_1_location_height + 9);
+    doc.text(team, 35, student_1_location_height + 18);
+    doc.text(student_1_medtalk, 35, student_1_location_height + 27);
 
     //doc.text(String(base64[0].stringify), 30, 50)
     //doc.addImage(base64, 'JPEG', 70, 30, 180, 180)
@@ -177,10 +184,16 @@ export default function TicketGenerator({ team_reference, toggleLoader }: Ticket
 
     doc.setFontSize(18);
     doc.text(student_2_name, 35, 160);
-    doc.text(student_2_location, 35, 169);
-    doc.text(student_2_school, 35, 178);
-    doc.text(team, 35, 187);
-    doc.text(student_2_medtalk, 35, 196);
+
+    const student_2_location_lines = student_2_location.split('\n');
+    student_2_location_lines.forEach((line, idx) => {
+      doc.text(line, 35, 169 + idx * 7);
+    });
+    const student_2_location_height = 169 + (student_2_location_lines.length - 1) * 7;
+
+    doc.text(student_2_school, 35, student_2_location_height + 9);
+    doc.text(team, 35, student_2_location_height + 18);
+    doc.text(student_2_medtalk, 35, student_2_location_height + 27);
 
     if (data.image_1) {
       const base64Image = `data:image/jpeg;base64,${data.image_1}`;
