@@ -54,7 +54,7 @@ export default function CertificateGenerator({ student1, student2 }: Certificate
             context.textBaseline = 'middle';
 
             const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2 - 80;
+            const centerY = canvas.height / 2 - 100;
 
             // Draw the text with the font
             context.fillText(studentName, centerX, centerY);
