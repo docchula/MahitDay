@@ -50,6 +50,9 @@ export default function index() {
     ? data.map((team: Team) => (
         <tr key={team.team_reference}>
           <td>{team.name}</td>
+          <td style={{ textAlign: 'center' }}>
+            {team.student1.student_score !== null ? `${team.student1.student_score}/50` : '-'}
+          </td>
           <td style={{ textAlign: 'right' }}>
             {(() => {
               switch (team.enrollment_status) {
@@ -109,6 +112,13 @@ export default function index() {
                   <Text fz="xl">พิมพ์เกียรติบัตร</Text>
                   <Box sx={{ overflow: 'auto' }}>
                     <Table verticalSpacing="xs" withBorder>
+                      <thead>
+                        <tr>
+                          <th>ชื่อทีม</th>
+                          <th style={{ textAlign: 'center' }}>คะแนนรวมรอบที่ 1</th>
+                          <th></th>
+                        </tr>
+                      </thead>
                       <tbody>{rows}</tbody>
                     </Table>
                   </Box>
