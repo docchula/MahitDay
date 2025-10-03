@@ -41,7 +41,7 @@ export default function MaxMinScore() {
       setLoading(true);
       try {
         await new Promise((resolve) => setTimeout(resolve, 500));
-        const res = await fetch('/api/team-score');
+        const res = await fetch('/api/team-score-public');
         const data = await res.json();
 
         const students: Student[] = [];
@@ -71,11 +71,11 @@ export default function MaxMinScore() {
 
   const items = [
     {
-      title: 'Max Score',
+      title: 'Max Team Score',
       score: maxScore,
     },
     {
-      title: 'Min Score',
+      title: 'Min Team Score',
       score: minScore,
     },
   ];
