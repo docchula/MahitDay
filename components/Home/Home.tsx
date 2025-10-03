@@ -15,6 +15,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import FAQ from './FAQ/FAQ';
+import MaxMinScore from './MaxMinScore/MaxMinScore';
 import SocialIcons from './SocialIcons/SocialIcons';
 import { REGISTRATION_STAGE } from '../../utils/config';
 import mahitdayLogo from '../../public/mahitday-logo.png';
@@ -78,6 +79,7 @@ export default function Home() {
           </Group>
           <SocialIcons />
         </div>
+        <MaxMinScore />
         <FAQ />
       </Flex>
     </main>
