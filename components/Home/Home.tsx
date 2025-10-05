@@ -18,6 +18,7 @@ import FAQ from './FAQ/FAQ';
 import SocialIcons from './SocialIcons/SocialIcons';
 import { REGISTRATION_STAGE } from '../../utils/config';
 import mahitdayLogo from '../../public/mahitday-logo.png';
+import MaxMinScore from './MaxMinScore/MaxMinScore';
 
 export default function Home() {
   return (
@@ -78,6 +79,7 @@ export default function Home() {
           </Group>
           <SocialIcons />
         </div>
+        <MaxMinScore />
         <FAQ />
       </Flex>
     </main>
