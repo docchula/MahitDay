@@ -1,0 +1,42 @@
+.feature {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--mantine-shadow-lg);
+}
+
+.header {
+  color: var(--mantine-color-blue-7);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.centerContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.title {
+  color: var(--mantine-color-dark-4);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.score {
+  color: var(--mantine-color-dark-8);
+  text-align: center;
+  line-height: 1.1;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
